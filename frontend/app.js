@@ -3,7 +3,7 @@
 import List from './list';
 import Dashboard from './dashboard';
 
-let list = new List ({
+let userList = new List ({
   title: "Пользователи",
   items: [{
     firstName: "Василий",
@@ -14,11 +14,11 @@ let list = new List ({
   }]
 });
 
-document.body.appendChild(list.getElem());
+document.body.appendChild(userList.getElem());
 
-let dashboard = new Dashboard ({
+let userDashboard = new Dashboard ({
   title: "Редактирование профиля",
-  props: list.selected
+  list: userList
 });
 
-document.body.appendChild(dashboard.getElem());
+document.body.appendChild(userDashboard.getElem());

@@ -4,9 +4,10 @@ import './dashboard.styl';
 
 export default class Dashboard {
 
-  constructor({title, props}) {
+  constructor({title, list}) {
     this._title = title;
-    this._props = props;
+    this._list = list;
+    this.props = this._list.selected;
 
     this._render();
   }
@@ -15,7 +16,7 @@ export default class Dashboard {
     let tmp = document.createElement('div');
     tmp.innerHTML = template({
       title: this._title,
-      props: this._props
+      props: this.props
     });
     this._elem = tmp.firstElementChild;
   }

@@ -1,5 +1,6 @@
 # manage-users
 
 ## Usage
-1) Type in terminal this command $ npm run start  
-2) Go to localhost:9000
+1) Run in terminal this command "$ npm i"  
+3) Run in terminal this command "$ npm run start"  
+3) In browser go to localhost:9000

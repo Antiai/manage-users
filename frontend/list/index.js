@@ -11,10 +11,10 @@ export default class List {
     this.selected = {};
 
     this._render();
-    this._elem.addEventListener('click', this.select.bind(this));
+    this._elem.addEventListener('click', this._select.bind(this));
   }
 
-  select(e) {
+  _select(e) {
     e.preventDefault();
     if (e.target.closest('.list__item')) {
       let target = e.target.closest('.list__item');
@@ -24,7 +24,13 @@ export default class List {
     } else {
       this.selected = {};
     }
-    console.log(this.selected);
+
+    this._elem.dispatchEvent(new CustomEvent('item-select', {
+      bubble: true,
+      detail: {
+        value: this.selected
+      }
+    }));
   }
 
   _render() {
