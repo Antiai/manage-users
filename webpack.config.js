@@ -1,6 +1,7 @@
 'use strict';
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const GhPagesWebpackPlugin = require('gh-pages-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -53,7 +54,16 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'css/[name].css',
             allChunks: true
+        }),
+        new GhPagesWebpackPlugin({
+          path: './public',
+          options: {
+              message: 'Update Users Page',
+              user: {
+                  name: 'antiai',
+                  email: 'awakening1985@gmail.com'
+              }
+          }
         })
     ]
-
 };

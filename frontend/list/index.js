@@ -49,7 +49,6 @@ export default class List {
     let arr = Array.from(this._elem.querySelectorAll('.list__item'));
     let index = arr.indexOf(e.target.closest('.list__item'));
     this._items.splice(index, 1);
-    console.log(this._items);
 
     e.target.closest('.list__item').remove();
   }
@@ -72,13 +71,12 @@ export default class List {
   }
 
   _removeDestroyBtn(e) {
-    if (e.target.classList.contains('list') || e.target.classList.contains('list__items')) return;
-
     let target = e.relatedTarget;
     if (target.classList.contains('list__item-destroy')) return;
 
     let targetItem = e.target.closest('.list__item');
-    let btn = targetItem.querySelector('button');
+    let btn = this._elem.querySelector('.list__item-destroy');
+    if (!btn) return;
 
     btn.remove();
   }
