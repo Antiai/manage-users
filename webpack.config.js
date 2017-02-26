@@ -11,7 +11,7 @@ module.exports = {
     output: {
         path: '/public',  // FS-путь к статике
         publicPath: '/', // Web-путь к статике (CDN?)
-        filename: '[name].js'
+        filename: 'js/[name].js'
     },
 
     watch: true,
@@ -51,7 +51,7 @@ module.exports = {
 
     plugins: [
         new ExtractTextPlugin({
-            filename: '[name].css',
+            filename: 'css/[name].css',
             allChunks: true
         })
     ]

@@ -1,24 +1,56 @@
 'use strict';
 
+import './form/form.styl';
 import List from './list';
 import Dashboard from './dashboard';
+
+let form = document.forms[0];
 
 let userList = new List ({
   title: "Пользователи",
   items: [{
-    firstName: "Василий",
-    surName:  "Иванов"
+    firstname: "Василий",
+    surname:  "Иванов"
   }, {
-    firstName: "Петр",
-    surName:  "Васильевич"
+    firstname: "Петр",
+    surname:  "Васильев"
+  }, {
+    firstname: "Иван",
+    surname:  "Сидоров"
   }]
 });
 
-document.body.appendChild(userList.getElem());
+form.appendChild(userList.getElem());
 
 let userDashboard = new Dashboard ({
   title: "Редактирование профиля",
   list: userList
 });
 
-document.body.appendChild(userDashboard.getElem());
+form.appendChild(userDashboard.getElem());
+
+form.addEventListener('item-select', function(event) {
+  userDashboard.showProps(event.detail.value);
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  userDashboard.returnProps();
+});
+
+form.addEventListener('item-save', function(event) {
+  userList.setProps(event.detail);
+});
+
+form.addEventListener('item-new', function(event) {
+  userList.clearSelection();
+  userList.addNewItem(event.detail);
+});
+
+form.addEventListener('cancel-changes', function(event) {
+  if (Object.keys(userList.getSelectedElem()).length == 0) {
+    userDashboard.clearFields();
+  } else {
+    userDashboard.showProps(userList.getSelectedElem());
+  }
+});
